@@ -1,16 +1,22 @@
 
 <template>
-    <div class="card flex justify-center bg-[#F79F1A]">
+    <div class="card flex justify-center">
         <Toast />
 
-        <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="grid lg:grid-cols-2 gap-4 w-full">
-            <div class="flex flex-col justify-center items-center gap-4">
-                <InputText name="username" type="text" placeholder="Username" class="w-full sm:w-56" />
-                <Button type="submit" severity="secondary" label="Submit" class="w-full sm:w-56" />
+        <Form v-slot="$form" :initialValues :resolver :validateOnValueUpdate="false" :validateOnBlur="true" :validateOnMount="['firstName']" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+            <div class="flex flex-col gap-1">
+                <InputText name="username" type="text" placeholder="Username" fluid />
+                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error.message }}</Message>
             </div>
-            <Fieldset legend="Form States" class="h-80 overflow-auto">
-                <pre class="whitespace-pre-wrap">{{ $form }}</pre>
-            </Fieldset>
+            <div class="flex flex-col gap-1">
+                <InputText name="firstName" type="text" placeholder="First Name" fluid :formControl="{ validateOnValueUpdate: true }" />
+                <Message v-if="$form.firstName?.invalid" severity="error" size="small" variant="simple">{{ $form.firstName.error.message }}</Message>
+            </div>
+            <div class="flex flex-col gap-1">
+                <InputText name="lastName" type="text" placeholder="Last Name" fluid />
+                <Message v-if="$form.lastName?.invalid" severity="error" size="small" variant="simple">{{ $form.lastName.error.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
         </Form>
     </div>
 </template>
@@ -22,22 +28,27 @@ import { useToast } from 'primevue/usetoast';
 const toast = useToast();
 
 const initialValues = ref({
-    username: ''
+    username: '',
+    firstName: '',
+    lastName: ''
 });
 
 const resolver = ({ values }) => {
-    const errors = { username: [] };
+    const errors = {};
 
     if (!values.username) {
-        errors.username.push({ type: 'required', message: 'Username is required.' });
+        errors.username = [{ message: 'Username is required.' }];
     }
 
-    if (values.username?.length < 3) {
-        errors.username.push({ type: 'minimum', message: 'Username must be at least 3 characters long.' });
+    if (!values.name) {
+        errors.firstName = [{ message: 'First name is required.' }];
+    }
+
+    if (!values.surname) {
+        errors.lastName = [{ message: 'Last name is required.' }];
     }
 
     return {
-        values,
         errors
     };
 };

@@ -19,6 +19,7 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@primevue/nuxt-module": "^4.3.3"
+    "@primevue/nuxt-module": "^4.3.3",
+    "postcss-import": "^16.1.0"
   }
 }

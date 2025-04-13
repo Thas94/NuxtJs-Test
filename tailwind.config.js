@@ -1,15 +1,13 @@
-import plugin from "primevue/config";
+import PrimeUI from "tailwindcss-primeui";
 
 export default
 {
-    content:[
-        './pages/**/*.vue',
-        './component/**/*.vue'
-    ],
+    content: ["./components/**/*.{js,vue,ts}", "./layouts/**/*.vue", "./pages/**/*.vue", "./plugins/**/*.{js,ts}", "./nuxt.config.{js,ts}", "./app.vue", "./error.vue"],
     theme:{
 
     },
     plugins: [
-        'tailwindcss-primeui'
+        'tailwindcss-primeui',
+        PrimeUI
     ]
 }
