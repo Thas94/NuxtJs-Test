@@ -2,3 +2,6 @@
 @import "tailwindcss/components";
 @import "./primevue/tailwind.css";
 @import "tailwindcss/utilities";
+
+
+@import "./base.css"
