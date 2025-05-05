@@ -4,10 +4,12 @@ import {format, differenceInDays} from 'date-fns'
 
 export const useHabitStore = defineStore('habitStore', {
     state: () => ({
-        habits: <any>[]
+        habits: <any>[],
+        products: <any>[],
+        product: <any>{}
     }),
     actions: {
-         
+        
         async getHabits(){
             const {$db} = useNuxtApp()
             const snapShot = await getDocs(collection($db, 'habits'))

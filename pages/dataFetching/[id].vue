@@ -1,11 +1,11 @@
 <template>
     <div>
         <Head>
-            <Title>Nuxt | {{ product.title }}</Title>
-            <Meta name="descriptions" :content="product.description"></Meta>
+            <Title>Nuxt | {{ productStore.product.title }}</Title>
+            <Meta name="descriptions" :content="productStore.product.description"></Meta>
         </Head>
 
-        <ProductDetails :product="product"/>
+        <ProductDetails :product="productStore.product"/>
     </div>
 </template>
 
@@ -16,13 +16,16 @@
 
     const product = ref({})
 
-    const GetProductById = async() => {
-        const response = await $fetch(`/api/dataFetch/${param.value}`)
-        console.log('product', response)
-        product.value = response
-    }
+    const productStore = useProductStore()
+    productStore.getProductById(param.value)
 
-    onMounted(async() => {
-        await GetProductById()
-    })
+    // const GetProductById = async() => {
+    //     const response = await $fetch(`/api/dataFetch/${param.value}`)
+    //     console.log('product', response)
+    //     product.value = response
+    // }
+
+    // onMounted(async() => {
+    //     await GetProductById()
+    // })
 </script>
