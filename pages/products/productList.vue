@@ -18,6 +18,10 @@
 </template>
 
 <script setup>
+
+    definePageMeta({
+        layout: 'products'
+    })
     //if using an array
     // const {pending, data: products} = useFetch('https://fakestoreapi.com/products', 
     //     {

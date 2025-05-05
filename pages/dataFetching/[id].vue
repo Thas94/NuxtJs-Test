@@ -1,12 +1,14 @@
 <template>
     <div>
-        <h1>This is the product page</h1>
+        <ProductDetails :product="product"/>
     </div>
 </template>
 
 <script setup>
-    const route = useRoute();
-    const param = ref(route.params.id)
+     const param = ref(useRoute().params.id)
+
+    //const {id} = toRefs(useRoute().params)
+
     const product = ref({})
 
     const GetProductById = async() => {

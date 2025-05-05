@@ -1,4 +1,5 @@
 <template>
+
     <div class="">
         <h1>This is the entry point</h1>
     </div>
