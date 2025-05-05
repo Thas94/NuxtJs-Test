@@ -12,6 +12,14 @@
 </template>
 
 <script setup>
+
+    useHead({
+        title: 'Nuxt Merch',
+        meta: [
+            {name: 'descriptions', content: 'Nuxt 3 Merch'}
+        ]
+    })
+
     const products = ref([{}]);
 
     const GetProducts = async () =>  {
