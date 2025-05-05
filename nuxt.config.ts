@@ -14,6 +14,12 @@ export default defineNuxtConfig({
       }]
     }
   },
+  runtimeConfig: {
+    public: {
+      msg: ''
+    },
+    apiSecret: '',
+  },
   css: ["@/assets/styles/tailwind.css"],
   primevue: {
       options: {
